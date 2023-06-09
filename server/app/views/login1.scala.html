@@ -1,8 +1,10 @@
 @(loginForm: Form[LoginData])(implicit request: MessagesRequestHeader, flash: Flash)
 
 @main("Login") {
+    <h2>Login</h2>
+
     <form method="get" action="/validateGet1">
-        <h1>GET submission (not secure)</H1>
+        <h3>GET submission (not secure)</h3>
         Username: <input type="text" name="username"><br>
         Password: <input type="password" name="password"><br>
         <input type="submit">
@@ -10,7 +12,7 @@
 
     <form method="post" action="@routes.TaskList1.validateLoginPost()">
         @helper.CSRF.formField
-        <h1>Login with POST</H1>
+        <h3>Login with POST</h3>
         Username: <input type="text" name="username" id="username-login"><br>
         Password: <input type="password" name="password" id="password-login"><br>
         <input type="submit">
@@ -18,13 +20,13 @@
 
     <form method="post" action="@routes.TaskList1.createUser()">
         @helper.CSRF.formField
-        <h1>Create User</H1>
+        <h3>Create User</h3>
         Username: <input type="text" name="username"><br>
         Password: <input type="password" name="password"><br>
         <input type="submit">
     </form>
 
-    <h1>Create user with play form</h1>
+    <h3>Create user with play form</h3>
     @helper.form(action = routes.TaskList1.validateLoginForm()) {
     @helper.CSRF.formField
     @helper.inputText(loginForm("Username"))
