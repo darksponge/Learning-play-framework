@@ -2,7 +2,7 @@
 @(tasks: Seq[String])(implicit request: RequestHeader, flash: Flash)
 
 @main("Task List") {
-    <h2> Task List </h2>
+    <h2>Task List</h2>
     <ul>
         @for((task, i) <- tasks.zipWithIndex) {
             <li>@task</li>
