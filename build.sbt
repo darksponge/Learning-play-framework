@@ -9,6 +9,7 @@ lazy val server = (project in file("server")).settings(commonSettings).settings(
   compile in Compile := ((compile in Compile) dependsOn scalaJSPipeline).value,
   libraryDependencies ++= Seq(
     "com.vmunier" %% "scalajs-scripts" % "1.1.2",
+    guice,
     "com.google.inject" % "guice" % "5.1.0",
     "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.0" % Test,
     specs2 % Test
