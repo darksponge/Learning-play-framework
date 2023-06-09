@@ -9,13 +9,12 @@ lazy val server = (project in file("server")).settings(commonSettings).settings(
   compile in Compile := ((compile in Compile) dependsOn scalaJSPipeline).value,
   libraryDependencies ++= Seq(
     "com.vmunier" %% "scalajs-scripts" % "1.1.2",
-    "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test,
-    guice,
+    "com.google.inject" % "guice" % "5.1.0",
+    "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.0" % Test,
     specs2 % Test
-)).enablePlugins(PlayScala)
-  .dependsOn(sharedJvm)
-  .configs(Test)
-
+  )
+).enablePlugins(PlayScala).
+  dependsOn(sharedJvm)
 
 lazy val client = (project in file("client")).settings(commonSettings).settings(
 	name := "Play-Videos-Client",
@@ -23,10 +22,11 @@ lazy val client = (project in file("client")).settings(commonSettings).settings(
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "0.9.5",
 		"org.querki" %%% "jquery-facade" % "1.2",
-		"com.typesafe.play" %%% "play-json" % "2.7.0"
+		"com.typesafe.play" %%% "play-json" % "2.7.2"
   )
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb).
   dependsOn(sharedJs)
+
 
 lazy val shared = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
@@ -35,7 +35,7 @@ lazy val shared = crossProject(JSPlatform, JVMPlatform)
 		name := "Play-Videos-Shared",
 		commonSettings,
 		libraryDependencies ++= Seq(
-			"com.typesafe.play" %%% "play-json" % "2.7.0"
+			"com.typesafe.play" %%% "play-json" % "2.7.2"
 		))
 lazy val sharedJvm = shared.jvm
 lazy val sharedJs = shared.js
